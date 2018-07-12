@@ -1,0 +1,2 @@
+export const SEARCH_INPUT_CHANGE = 'SEARCH_INPUT_CHANGE'
+export const REPO_SEARCH = 'REPO_SEARCH'
