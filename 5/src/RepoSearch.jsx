@@ -1,13 +1,14 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import { SEARCH_INPUT_CHANGE, REPO_SEARCH } from './store/constants'
+import { SEARCH_INPUT_CHANGE } from './store/constants'
+import {getRepos} from './Api'
 
 const RepoSearch = (props) => {
     console.log('render', props)
   return (
     <div>
       <h1>Repo Search</h1>
-      <form onSubmit={props.onRepoSearch} >
+      <form onSubmit={(e) => props.onRepoSearch(e, props.searchInputValue)} >
         <input value={props.searchInputValue} onChange={props.onSearchInputChange} />
       </form>
       <ul>
@@ -35,21 +36,10 @@ const mapDispatchToProps = (dispatch) => {
             }
             dispatch(action)
         },
-        onRepoSearch: (e) => {
+        onRepoSearch: (e, query) => {
             e.preventDefault()
-            let query = 'steak'
-            fetch(`https://api.github.com/search/repositories?q=${query}`)
-                .then(res => {
-                    return res.json()
-                })
-                .then((data) => {
-                    // console.log(data)
-                    const action = {
-                        type: REPO_SEARCH,
-                        payload: data
-                    }
-                    dispatch(action)
-                })
+            console.log(query)
+            getRepos(dispatch, query)
         }
     }
 }
