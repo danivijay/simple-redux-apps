@@ -3,6 +3,7 @@ import './App.css';
 import { BrowserRouter, Route, Link } from 'react-router-dom';
 
 import Counter1 from './Counter1';
+import Counter2 from './Counter2';
 
 class App extends Component {
       render() {
@@ -16,6 +17,7 @@ class App extends Component {
                               </nav>
 
                               <Route path="/counter1" component={Counter1} />
+                              <Route path="/counter2" component={Counter2} />
                         </div>
                   </BrowserRouter>
             );
